@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 def str64(string):
-    string = string.strip('0x')
+    if string[:2] == '0x':
+        string = string[2:]
     string = '0' * (16-len(string)) + string
     result = ['00'] * 8
     for i in range(0, 8):
@@ -10,7 +11,8 @@ def str64(string):
 
 
 def str32(string):
-    string = string.strip('0x')
+    if string[:2] == '0x':
+        string = string[2:]
     string = '0' * (8-len(string)) + string
     result = ['00'] * 4
     for i in range(0, 4):
@@ -19,7 +21,8 @@ def str32(string):
 
 
 def strhex(string, bits):
-    string = string.strip('0x')
+    if string[:2] == '0x':
+        string = string[2:]
     string = '0' * (bits/4 - len(string)) + string
     result = ['00'] * (bits / 8)
     for i in range(0, bits / 8):
